@@ -1,0 +1,6 @@
+name: imceimage
+type: module
+description: 'Migrates legacy Drupal 6 ImceImage field to Image field'
+package: Migrate (custom)
+version: VERSION
+core: 8.x

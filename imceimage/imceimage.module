@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Manage migration of legacy ImceImage field type.
+ */
+
+use Drupal\mylog\Logger; 
+ 
+  
+/**
+ * Implements hook_migration_load().
+ */
+
+function imceimage_migration_load($entities) {
+	
+	//\Drupal::logger('imceimage')->notice("<pre>%s</pre>",array('%s'=>print_r(array_keys($entities),true)));
+	
+	// Inject the following into the process section of the d6_field migration
+	// type/map/imceimage/imceimage : image
+	if (isset($entities['d6_field'])) {
+		$migration = $entities['d6_field'];
+		//$process = array();
+		//$process[0]['map']['imceimage']['imceimage'] = 'image';
+		//$migration->mergeProcessOfProperty('type', $process);
+	  
+	 	//\Drupal::logger('imceimage')->notice("<pre>migration=%s</pre>",array('%s'=>print_r($migration,true)));
+		
+		$defs = Drupal::service('plugin.manager.migrate.cckfield')->getDefinitions();
+		\Drupal::logger('imceimage')->notice("<pre>field types=%s</pre>",array('%s'=>print_r($defs,true)));
+	}
+	
+	// Inject the following into the process section of the d6_field_instance_widget_settings
+	// 'options/type'/type/map/imceimage : image_image
+	/*if (isset($entities['d6_field_instance_widget_settings'])) {
+		$migration = $entities['d6_field_instance_widget_settings'];
+		$process = array();
+		$process['type']['map']['imceimage'] = 'image_image';
+		$migration->mergeProcessOfProperty('options/type', $process);
+	}*/
+	
+	/*if (isset($entities['d6_node__newsarticle'])) {
+		$migration = $entities['d6_node__newsarticle'];
+		//\Drupal::logger('imceimage')->notice("<pre>Node=%s</pre>",array('%s'=>print_r($migration,true)));
+	}*/
+	
+		
+  	// \Drupal::logger('imceimage')->notice("<pre>%s</pre>",array('%s'=>print_r($migration->getProcess(),true)));
+}
+
+function imceimage_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+	/*
+	if ($migration->id()=='d6_node__org' && $row->getSourceProperty('nid')==37277) {
+		\Drupal::logger('imceimage')->notice("<pre>Row=%r</pre>",array('%r'=>print_r($row,true)));	
+  	}
+	 */		
+}
+
+	
