@@ -5,9 +5,7 @@
  * Manage migration of legacy ImceImage field type.
  */
 
-use Drupal\mylog\Logger; 
- 
-  
+
 /**
  * Implements hook_migration_load().
  */
@@ -19,15 +17,15 @@ function imceimage_migration_load($entities) {
 	// Inject the following into the process section of the d6_field migration
 	// type/map/imceimage/imceimage : image
 	if (isset($entities['d6_field'])) {
-		$migration = $entities['d6_field'];
+		//$migration = $entities['d6_field'];
 		//$process = array();
 		//$process[0]['map']['imceimage']['imceimage'] = 'image';
 		//$migration->mergeProcessOfProperty('type', $process);
 	  
 	 	//\Drupal::logger('imceimage')->notice("<pre>migration=%s</pre>",array('%s'=>print_r($migration,true)));
 		
-		$defs = Drupal::service('plugin.manager.migrate.cckfield')->getDefinitions();
-		\Drupal::logger('imceimage')->notice("<pre>field types=%s</pre>",array('%s'=>print_r($defs,true)));
+		//$defs = Drupal::service('plugin.manager.migrate.cckfield')->getDefinitions();
+		//\Drupal::logger('imceimage')->notice("<pre>defs=%s</pre>",array('%s'=>print_r($defs,true)));
 	}
 	
 	// Inject the following into the process section of the d6_field_instance_widget_settings

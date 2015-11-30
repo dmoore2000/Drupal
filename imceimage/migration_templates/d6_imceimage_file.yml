@@ -1,0 +1,31 @@
+# Every migration that saves into {file_managed} must have the d6_file
+# migration as an optional dependency to ensure d6_file runs first.
+id: d6_imceimage_file
+label: ImceImage Files
+migration_tags:
+  - Drupal 6
+builder:
+  plugin: d6_imceimage_file
+source:
+  plugin: d6_imceimage_file
+process:
+  filename: filename
+  uri:
+    plugin: file_uri
+    source:
+      - filepath
+      - file_directory_path
+      - temp_directory_path
+      - is_public
+  filemime: filemime
+  filesize: filesize
+  status: status
+  changed: changed
+  uid: uid
+destination:
+  plugin: entity:file
+migration_dependencies:
+  required:
+    - d6_file
+    - d6_field_instance
+    - d6_node_type
