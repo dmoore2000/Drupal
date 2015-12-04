@@ -60,12 +60,11 @@ class ImceImageField extends CckFieldPluginBase {
       $migration->mergeProcessOfProperty($field_name, $process);
 
       // Add a dependency for the d6_imceimage_file migrations
-      /*
-      $source = $migration->get('source');
+      // Ideally this would be called via a new CckFieldPluginBase method called getDependencies
+      // This would then be called by the d6_node.yml builder plugin to add dependencies to the migrations
       $dependencies = $migration->get('migration_dependencies');
-      $dependencies['required'][] = 'd6_imceimage_file__'.$source['node_type'].'__*';
+      $dependencies['required'][] = 'd6_imceimage_file:*';
       $migration->set('migration_dependencies', $dependencies);
-      */
   }
 
 }

@@ -60,10 +60,6 @@ class ImceImageFile extends DrupalSqlBase {
         }
 
         if (isset($this->configuration['field_name'])) {
-            $field_table = 'content_' . $field['field_name'];
-            //$node_table = 'content_type_' . $node->getSourceProperty('type');
-
-            /** @var \Drupal\Core\Database\Schema $db */
             $db = $this->getDatabase()->schema();
 
             $field_name = $this->configuration['field_name'];
@@ -76,6 +72,7 @@ class ImceImageFile extends DrupalSqlBase {
             $query->innerJoin($field_table, 'f', 'n.vid = f.vid');
             $query->addField('f', $field_name.'_imceimage_path','path');
             $query->isNotNull($field_name.'_imceimage_path');
+            $query->condition($field_name.'_imceimage_path','','<>');
         }
 
         return $query;
