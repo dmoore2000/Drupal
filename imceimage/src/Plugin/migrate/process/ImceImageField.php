@@ -100,8 +100,8 @@ class ImceImageField extends ProcessPluginBase implements ContainerFactoryPlugin
                 'target_id' => $fid,
                 'display' => 1,
                 'description' => '',
-                'alt' => isset($value['imceimage_alt']) ? $value['imceimage_alt'] : '',
-                'title' => isset($value['imceimage_title']) ? $value['imceimage_title'] : '',
+                'alt' => isset($value['imceimage_alt']) ? substr($value['imceimage_alt'],0,255) : '',
+                'title' => isset($value['imceimage_title']) ? substr($value['imceimage_title'],0,255) : '',
             ];
         }
         else {
